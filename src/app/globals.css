@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply bg-white text-black py-1 px-5 font-medium rounded-full;
+  }
+}
+
+ 

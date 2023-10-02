@@ -1,9 +1,19 @@
+import Image from "next/image";
 import React from "react";
+import { ConnectWalletButton } from "../button/connect-wallet-btn";
 
 export const Navbar = () => {
   return (
     <>
-      <div className="flex h-10 w-full max-w-7xl bg-red-300"></div>
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between bg-red-400 px-4 md:px-0">
+        <Image
+          src={"/imgs/fireblocks.svg"}
+          alt="fireblocks logo"
+          width={200}
+          height={70}
+        />
+        <ConnectWalletButton />
+      </div>
     </>
   );
 };
