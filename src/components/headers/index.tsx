@@ -1,11 +1,20 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { ConnectWalletButton } from "../button/connect-wallet-btn";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
+  const pathname = usePathname();
   return (
     <>
-      <div className="absolute inset-x-0 top-0 mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4  md:px-0">
+      <div
+        className={
+          pathname.includes("mint")
+            ? "flex h-20 justify-between px-4"
+            : "navbar-normal"
+        }
+      >
         <Image
           src={"/imgs/fireblocks.svg"}
           alt="fireblocks logo"

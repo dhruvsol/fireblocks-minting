@@ -4,8 +4,13 @@
 
 @layer components {
   .btn {
-    @apply bg-white text-black py-1 px-5 font-medium rounded-full;
+    @apply rounded-full bg-white px-5 py-1 font-medium text-black;
+  }
+  .navbar-normal {
+  @apply absolute inset-x-0 top-0 mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4  md:px-0
   }
 }
 
- 
+.bottom-shadow {
+  box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.2);
+}
