@@ -11,7 +11,7 @@ export const Navbar = () => {
       <div
         className={
           pathname.includes("mint")
-            ? "flex h-20 justify-between px-4"
+            ? "flex h-20 items-center justify-between px-4"
             : "navbar-normal"
         }
       >
