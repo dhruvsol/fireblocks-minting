@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
+import { Slider } from "../ui/slider";
 
 const radioConstants = [
   {
@@ -24,7 +25,7 @@ const radioConstants = [
 export const NftForm = () => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-5">
+      <div className="flex flex-col items-center justify-center gap-14">
         <Image
           src="/imgs/nftmintclayno.svg"
           alt="nft mint"
@@ -34,8 +35,25 @@ export const NftForm = () => {
         <h1 className="text-center text-4xl font-extrabold text-black">
           How many Claynosaurz <br /> would you like to mint
         </h1>
+        <div>
+          <div className="flex items-center justify-center gap-2">
+            <p className="text-lg font-semibold">1</p>
+            <div className="w-96 ">
+              <Slider max={1000} step={1} min={1} />
+            </div>
+            <p className="text-lg font-semibold">1K</p>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <p className="font-normal text-black">
+              <span className="font-bold">0.079SOL</span> for each
+            </p>
+            <p className="font-normal text-black">
+              <span className="font-bold">1.13SOL</span> total
+            </p>
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-center gap-5">
-          <button className="btn h-16 w-96 ">
+          <button className="btn h-16 w-96">
             <div className="flex items-center justify-center gap-3 text-center">
               <div>
                 <svg
@@ -66,6 +84,7 @@ export const NftForm = () => {
                         disabled={e.disable}
                         value={e.label}
                         id={e.label}
+                        key={e.label}
                       />
                       <Label
                         className={e.disable ? "text-[#737373]" : ""}
