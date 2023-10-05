@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/headers";
 import { SideCard } from "@/components/sidecards/side-card";
+import { NftForm } from "@/components/user-forms/nft-form";
 import React from "react";
 
 const NFTPage = () => {
@@ -8,6 +9,7 @@ const NFTPage = () => {
       <div className="flex min-h-screen w-full justify-center">
         <div className="min-h-screen w-full border bg-[#AFC1C1]">
           <Navbar />
+          <NftForm />
         </div>
         <div className="min-h-screen w-full">
           <SideCard />
