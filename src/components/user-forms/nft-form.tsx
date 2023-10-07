@@ -39,7 +39,7 @@ export const NftForm = () => {
           <div className="flex items-center justify-center gap-2">
             <p className="text-lg font-semibold">1</p>
             <div className="w-96 ">
-              <Slider max={1000} step={1} min={1} />
+              <Slider max={1000} step={1} defaultValue={[80]} min={1} />
             </div>
             <p className="text-lg font-semibold">1K</p>
           </div>
@@ -79,12 +79,11 @@ export const NftForm = () => {
               <RadioGroup className="grid grid-cols-2" defaultValue="$0">
                 {radioConstants.map((e) => {
                   return (
-                    <div className="flex items-center space-x-3">
+                    <div key={e.label} className="flex items-center space-x-3">
                       <RadioGroupItem
                         disabled={e.disable}
                         value={e.label}
                         id={e.label}
-                        key={e.label}
                       />
                       <Label
                         className={e.disable ? "text-[#737373]" : ""}
