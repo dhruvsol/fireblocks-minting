@@ -1,17 +1,21 @@
-import { Navbar } from "@/components/headers";
-import { NFTLoading } from "@/components/loading/nft-loading";
+"use client";
+
+import { NFTSideCard } from "@/components/sidecards/nft-side-card";
 import { SideCard } from "@/components/sidecards/side-card";
-import { NftForm } from "@/components/user-forms/nft-form";
-import React from "react";
+import React, { useState } from "react";
 
 const NFTPage = () => {
+  const [step, setStep] = useState<number>(0);
+  const [nftCount, setNftCount] = useState<number>(100);
   return (
     <>
       <div className="flex min-h-screen w-full justify-center">
-        <div className="relative min-h-screen w-full border bg-[#AFC1C1]">
-          <Navbar />
-          <NFTLoading count={80} />
-        </div>
+        <NFTSideCard
+          setStep={setStep}
+          step={step}
+          nftCount={nftCount}
+          setNftCount={setNftCount}
+        />
         <div className="min-h-screen w-full">
           <SideCard />
         </div>

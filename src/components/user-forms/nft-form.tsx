@@ -22,7 +22,12 @@ const radioConstants = [
     disable: false,
   },
 ];
-export const NftForm = () => {
+interface Props {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  nftCount: number;
+  setNftCount: React.Dispatch<React.SetStateAction<number>>;
+}
+export const NftForm = ({ setStep, nftCount, setNftCount }: Props) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-14">
@@ -39,7 +44,16 @@ export const NftForm = () => {
           <div className="flex items-center justify-center gap-2">
             <p className="text-lg font-semibold">1</p>
             <div className="w-96 ">
-              <Slider max={1000} step={1} defaultValue={[80]} min={1} />
+              <Slider
+                max={1000}
+                step={1}
+                defaultValue={[100]}
+                min={1}
+                value={[nftCount]}
+                onValueChange={(e) => {
+                  setNftCount(e[0]);
+                }}
+              />
             </div>
             <p className="text-lg font-semibold">1K</p>
           </div>
@@ -68,7 +82,12 @@ export const NftForm = () => {
                   />
                 </svg>
               </div>
-              <p className="text-lg font-semibold text-black">Mint Now!</p>
+              <p
+                className="text-lg font-semibold text-black"
+                onClick={() => setStep((prev) => prev + 1)}
+              >
+                Mint Now!
+              </p>
             </div>
           </button>
           <div className="flex flex-col gap-5 ">

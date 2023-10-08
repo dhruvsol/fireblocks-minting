@@ -4,8 +4,9 @@ import React from "react";
 
 interface Props {
   count: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
-export const NFTLoading = ({ count }: Props) => {
+export const NFTLoading = ({ count, setStep }: Props) => {
   return (
     <>
       <div className="relative flex h-screen flex-col items-center justify-center gap-3 pb-44">
@@ -25,7 +26,10 @@ export const NFTLoading = ({ count }: Props) => {
             height={200}
           />
         </div>
-        <button className="absolute bottom-14 right-12">
+        <button
+          onClick={() => setStep((prev) => prev + 1)}
+          className="absolute bottom-14 right-12"
+        >
           <div className="flex items-center justify-center  text-sm">
             <p>Continue</p>
             <div>
