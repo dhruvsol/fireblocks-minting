@@ -5,7 +5,7 @@ interface Props {
   subheading: string;
   points: string[];
 }
-export const SideCard = () => {
+export const SideCard = ({ heading, points, subheading }: Props) => {
   return (
     <>
       <div className="flex h-full w-full flex-col items-center justify-between bg-[#171717] px-20 pt-20">
@@ -28,14 +28,8 @@ export const SideCard = () => {
             </div>
             <p>What’s happening here</p>
           </div>
-          <h1 className="text-5xl font-extrabold text-white">
-            Determine Quantity
-          </h1>
-          <p className="text-base font-normal text-[#A3A3A3]">
-            Here is where the interface asks the user to input a number or slide
-            to indicate the amount of NFTs they want to mint. The interface
-            provides feedback on unit and total price of the minting.
-          </p>
+          <h1 className="text-5xl font-extrabold text-white">{heading}</h1>
+          <p className="text-base font-normal text-[#A3A3A3]">{subheading}</p>
         </div>
         <div className="flex h-20 w-full flex-col justify-start gap-4  ">
           <div className="flex items-center justify-start gap-2  text-base font-semibold uppercase text-indigo-400">
@@ -66,15 +60,9 @@ export const SideCard = () => {
             <div className="h-full w-0.5 border border-[#737373]" />
             <div className="w-full ">
               <ol className="list-decimal space-y-3 text-base font-normal text-white">
-                <li>Users select how many NFTs they would like to mint.</li>
-                <li>
-                  An API call is made to our backend server to create a
-                  transaction.
-                </li>
-                <li>
-                  The Transaction is sent to Fireblocks to sign and send to
-                  network.
-                </li>
+                {points.map((po) => {
+                  return <li key={po}>{po}</li>;
+                })}
               </ol>
             </div>
           </div>
