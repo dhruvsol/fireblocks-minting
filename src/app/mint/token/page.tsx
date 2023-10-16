@@ -12,7 +12,7 @@ interface CardProps {
   points: string[];
 }
 
-interface FormInterface {
+export interface FormInterface {
   name: string;
   symbol: string;
   description?: string;
@@ -58,11 +58,12 @@ const TokenPage = () => {
       ],
     },
   ];
-  const { control, setValue } = useForm<FormInterface>();
+  const formControl = useForm<FormInterface>();
   return (
     <>
       <div className="flex min-h-screen w-full justify-center">
         <TokenSideCard
+          formControl={formControl}
           setStep={setStep}
           step={step}
           nftCount={nftCount}

@@ -2,8 +2,15 @@ import React from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
+import { FormInterface } from "@/app/mint/token/page";
+import { UseFormReturn } from "react-hook-form";
 
-export const TokenForm = () => {
+interface Props {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  formControl: UseFormReturn<FormInterface, any, undefined>;
+}
+export const TokenForm = ({ setStep, step }: Props) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -15,7 +22,7 @@ export const TokenForm = () => {
             height={80}
           />
           <h1 className="text-3xl font-extrabold text-black">
-            Let's Create a Token
+            {`Let's Create a Token`}
           </h1>
         </div>
         <form
