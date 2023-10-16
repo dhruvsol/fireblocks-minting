@@ -10,7 +10,10 @@ interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   formControl: UseFormReturn<FormInterface, any, undefined>;
 }
-export const TokenForm = ({ setStep, step }: Props) => {
+export const TokenForm = ({ setStep, step, formControl }: Props) => {
+  const onSubmit = () => {
+    setStep(step + 1);
+  };
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -26,25 +29,37 @@ export const TokenForm = ({ setStep, step }: Props) => {
           </h1>
         </div>
         <form
-          onSubmit={() => {}}
-          className="mt-6 flex w-full max-w-xl flex-col gap-8"
+          onSubmit={formControl.handleSubmit(onSubmit)}
+          className="mt-6 flex w-full max-w-xl flex-col gap-5"
         >
           <div className="flex flex-col gap-2">
             <label className="text-lg font-bold text-black">Name</label>
             <Input
+              {...formControl.register("name", {
+                required: true,
+              })}
               placeholder="Super Cool Coin"
               className="h-12 rounded-md  border border-[#525252] bg-transparent px-2 text-black placeholder:text-black "
               type="text"
             />
+            {formControl.formState.errors.name && (
+              <p className="text-[#F43F5E]">Name is Required</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-lg font-bold text-black">Symbol</label>
             <Input
+              {...formControl.register("symbol", {
+                required: true,
+              })}
               placeholder="$SCC"
               maxLength={4}
               className="h-12 rounded-md  border border-[#525252] bg-transparent px-2 text-black placeholder:text-black "
               type="text"
             />
+            {formControl.formState.errors.symbol && (
+              <p className="text-[#F43F5E]">Symbol is Required</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-lg font-bold text-black">
@@ -52,7 +67,8 @@ export const TokenForm = ({ setStep, step }: Props) => {
               <span className="font-normal text-[#525252]">(Optional)</span>
             </label>
             <Textarea
-              placeholder="$SCC"
+              {...formControl.register("description", {})}
+              placeholder="Fiat-backed stablecoin"
               className="h-12 rounded-md  border border-[#525252] bg-transparent px-2 text-black placeholder:text-black "
             />
           </div>
@@ -101,10 +117,14 @@ export const TokenForm = ({ setStep, step }: Props) => {
               Number of Decimals
             </label>
             <Input
+              {...formControl.register("decimals", { required: true })}
               type="number"
               placeholder="6"
               className="h-12 appearance-none  rounded-md border border-[#525252] bg-transparent px-2 text-black placeholder:text-black "
             />
+            {formControl.formState.errors.decimals && (
+              <p className="text-[#F43F5E]">Decimals is Required</p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label className="text-lg font-bold text-black">
@@ -112,9 +132,13 @@ export const TokenForm = ({ setStep, step }: Props) => {
             </label>
             <Input
               type="number"
+              {...formControl.register("tokenCount", { required: true })}
               placeholder="10000"
               className="h-12 rounded-md  border border-[#525252] bg-transparent px-2 text-black placeholder:text-black"
             />
+            {formControl.formState.errors.tokenCount && (
+              <p className="text-[#F43F5E]">Number of Token is Required</p>
+            )}
           </div>{" "}
           <button type="submit" className="btn h-16 w-full">
             <div className="flex items-center justify-center gap-3 text-center">

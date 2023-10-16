@@ -47,18 +47,25 @@ const TokenPage = () => {
       ],
     },
     {
-      heading: "The NFT Gallery",
+      heading: "The Token Mint Result",
       subheading:
-        "Finally, the gallery of newly-minted NFTs is created and statistics about the mint and collection are created.",
+        "Finally, statistics about the mint and collection are created.",
       points: [
         "This is what happens first",
         "And the second thing happens now.",
-        "After that, the third thing is what happens.",
-        "And finally, step 4 completes the backend process.",
       ],
     },
   ];
-  const formControl = useForm<FormInterface>();
+  const formControl = useForm<FormInterface>({
+    defaultValues: {
+      decimals: 6,
+      description: "",
+      name: "",
+      tokenImage: "",
+      symbol: "",
+      tokenCount: 30,
+    },
+  });
   return (
     <>
       <div className="flex min-h-screen w-full justify-center">

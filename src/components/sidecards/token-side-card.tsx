@@ -2,14 +2,12 @@
 
 import React from "react";
 import { Navbar } from "../headers";
-import { NftForm } from "../user-forms/nft-form";
-import { NFTLoading } from "../loading/nft-loading";
-import { NFTSuccess } from "../sucess/nft-sucess";
 import { cn } from "@/lib/utils";
 import { TokenForm } from "../user-forms/token-form";
 import { TokenLoading } from "../loading/token-loading";
 import { FormInterface } from "@/app/mint/token/page";
 import { UseFormReturn } from "react-hook-form";
+import { TokenSuccess } from "../sucess/token-sucess";
 
 interface Props {
   step: number;
@@ -45,12 +43,12 @@ export const TokenSideCard = ({
         )}
         {step === 1 && (
           <>
-            <TokenLoading />
+            <TokenLoading formControl={formControl} />
           </>
         )}
         {step === 2 && (
           <>
-            <NFTSuccess />
+            <TokenSuccess formControl={formControl} />
           </>
         )}
       </div>
