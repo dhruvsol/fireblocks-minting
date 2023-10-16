@@ -67,7 +67,7 @@ export const SideCard = ({ heading, points, subheading }: Props) => {
             </div>
           </div>
         </div>
-        <div className="h-96 w-full border border-red-500"></div>
+        <div className="h-96 "></div>
       </div>
     </>
   );
