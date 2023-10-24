@@ -33,8 +33,7 @@ export async function storeIMAGE(
   });
 }
 
-
-const uploadmetadata = async (metadata: Object) => {
+export const uploadmetadata = async (metadata: Object) => {
   const blob = new Blob([JSON.stringify(metadata)], {
     type: "application/json",
   });

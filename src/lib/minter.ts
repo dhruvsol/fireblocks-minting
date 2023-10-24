@@ -156,7 +156,6 @@ export class Minter {
       symbol: string;
       description: string;
       image: string;
-      uri: string;
     };
   }): Promise<{
     mintAddress: string;
@@ -202,7 +201,7 @@ export class Minter {
     const ON_CHAIN_METADATA = {
       name: MY_TOKEN_METADATA.name,
       symbol: MY_TOKEN_METADATA.symbol,
-      uri: mintConfig.tokenMetadata.uri,
+      uri: "",
       sellerFeeBasisPoints: 0,
       creators: null,
       collection: null,
