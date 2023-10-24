@@ -82,17 +82,19 @@ const TokenPage = () => {
         "62efe760-8c68-4d5d-97f5-360686c9bfe2",
         "https://sandbox-api.fireblocks.io",
       );
-      const success = await createTokenMint(fireblocks, true, "2", {
-        numberTokens: formControl.getValues("tokenCount"),
-        numDecimals: 0,
-        tokenMetadata: {
-          description: formControl.getValues("description") ?? "",
-          image: "",
-          name: formControl.getValues("name"),
-          symbol: formControl.getValues("symbol"),
-        },
-      });
-      console.log(success);
+      const i = await fireblocks.getDepositAddresses("2", "SOL_TEST");
+      console.log(i);
+      // const success = await createTokenMint(fireblocks, true, "2", {
+      //   numberTokens: formControl.getValues("tokenCount"),
+      //   numDecimals: 0,
+      //   tokenMetadata: {
+      //     description: formControl.getValues("description") ?? "",
+      //     image: "",
+      //     name: formControl.getValues("name"),
+      //     symbol: formControl.getValues("symbol"),
+      //   },
+      // });
+      // console.log(success);
       toast.success("Success while minting token", {
         position: "bottom-left",
       });
