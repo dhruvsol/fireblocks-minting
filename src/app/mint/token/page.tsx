@@ -1,15 +1,14 @@
 "use client";
 
-import { NFTSideCard } from "@/components/sidecards/nft-side-card";
 import { SideCard } from "@/components/sidecards/side-card";
 import { TokenSideCard } from "@/components/sidecards/token-side-card";
 import { Minter } from "@/lib/minter";
 import { FireblocksSDK } from "fireblocks-sdk";
-import path from "path";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-import fs from "fs";
+import { getAPISec } from "@/utils/helpers/fireblocks";
+
 interface CardProps {
   heading: string;
   subheading: string;
@@ -71,20 +70,18 @@ const TokenPage = () => {
     },
   });
 
-  const apiSecret = fs.readFileSync(
-    path.resolve(__dirname, "../fireblocks_secret.key"),
-    "utf8",
-  );
   const mintToken = async () => {
     try {
       setIsLoading(true);
       setStep(1);
       // create token
+      const apiKey = await getAPISec();
       const fireblocks = new FireblocksSDK(
-        apiSecret,
-        "67062b21-f06f-4f07-b3ec-1977bf6a3cf2",
+        apiKey,
+        "62efe760-8c68-4d5d-97f5-360686c9bfe2",
         "https://sandbox-api.fireblocks.io",
       );
+      console.log(fireblocks);
       const minter = new Minter(fireblocks, "2", true);
       minter.createTokenMint({
         numberTokens: formControl.getValues("tokenCount"),

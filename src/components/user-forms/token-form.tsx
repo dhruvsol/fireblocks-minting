@@ -11,10 +11,7 @@ interface Props {
   formControl: UseFormReturn<FormInterface, any, undefined>;
   mintToken: () => void;
 }
-export const TokenForm = ({ setStep, step, formControl }: Props) => {
-  const onSubmit = () => {
-    setStep(step + 1);
-  };
+export const TokenForm = ({ mintToken, step, formControl }: Props) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -30,7 +27,7 @@ export const TokenForm = ({ setStep, step, formControl }: Props) => {
           </h1>
         </div>
         <form
-          onSubmit={formControl.handleSubmit(onSubmit)}
+          onSubmit={formControl.handleSubmit(mintToken)}
           className="mt-6 flex w-full max-w-xl flex-col gap-5"
         >
           <div className="flex flex-col gap-2">
