@@ -32,3 +32,14 @@ export async function storeIMAGE(
     description,
   });
 }
+
+
+const uploadmetadata = async (metadata: Object) => {
+  const blob = new Blob([JSON.stringify(metadata)], {
+    type: "application/json",
+  });
+  const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY });
+  const metadataFile = new File([blob], "metadata.json");
+  const meta_cid = await nftstorage.storeBlob(metadataFile);
+  return `https://cloudflare-ipfs.com/ipfs/${meta_cid}/metadata.json`;
+};
