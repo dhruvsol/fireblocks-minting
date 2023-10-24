@@ -3,9 +3,13 @@
 import { NFTSideCard } from "@/components/sidecards/nft-side-card";
 import { SideCard } from "@/components/sidecards/side-card";
 import { TokenSideCard } from "@/components/sidecards/token-side-card";
+import { Minter } from "@/lib/minter";
+import { FireblocksSDK } from "fireblocks-sdk";
+import path from "path";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import toast, { Toaster } from "react-hot-toast";
+import fs from "fs";
 interface CardProps {
   heading: string;
   subheading: string;
@@ -23,7 +27,7 @@ export interface FormInterface {
 const TokenPage = () => {
   const [step, setStep] = useState<number>(0);
   const [nftCount, setNftCount] = useState<number>(100);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const sidebarElements: CardProps[] = [
     {
       heading: "Determine Quantity",
@@ -66,19 +70,61 @@ const TokenPage = () => {
       tokenCount: 30,
     },
   });
+
+  const apiSecret = fs.readFileSync(
+    path.resolve(__dirname, "../fireblocks_secret.key"),
+    "utf8",
+  );
+  const mintToken = async () => {
+    try {
+      setIsLoading(true);
+      setStep(1);
+      // create token
+      const fireblocks = new FireblocksSDK(
+        apiSecret,
+        "67062b21-f06f-4f07-b3ec-1977bf6a3cf2",
+        "https://sandbox-api.fireblocks.io",
+      );
+      const minter = new Minter(fireblocks, "2", true);
+      minter.createTokenMint({
+        numberTokens: formControl.getValues("tokenCount"),
+        numDecimals: 0,
+        tokenMetadata: {
+          description: formControl.getValues("description") ?? "",
+          image: "",
+          name: formControl.getValues("name"),
+          symbol: formControl.getValues("symbol"),
+          uri: "",
+        },
+      });
+      toast.success("Success while minting token", {
+        position: "bottom-left",
+      });
+      setStep(2);
+      // setIsLoading(true);
+    } catch (error) {
+      setStep(0);
+      toast.error("Error while minting token", {
+        position: "bottom-left",
+      });
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <>
       <div className="flex min-h-screen w-full justify-center">
         <TokenSideCard
+          mintToken={mintToken}
           formControl={formControl}
           setStep={setStep}
           step={step}
-          nftCount={nftCount}
-          setNftCount={setNftCount}
         />
         <div className="min-h-screen w-full">
           <SideCard {...sidebarElements[step]} />
         </div>
+        <Toaster />
       </div>
     </>
   );

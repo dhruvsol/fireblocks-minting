@@ -9,6 +9,7 @@ interface Props {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   formControl: UseFormReturn<FormInterface, any, undefined>;
+  mintToken: () => void;
 }
 export const TokenForm = ({ setStep, step, formControl }: Props) => {
   const onSubmit = () => {

@@ -25,14 +25,13 @@ import {
   Metaplex,
   UploadMetadataInput,
 } from "@metaplex-foundation/js";
-import secret from "../wallet.json";
 
 const solanaConnection = new Connection(
   "https://api.devnet.solana.com",
   "confirmed",
 );
 
-const userWallet = Keypair.fromSecretKey(new Uint8Array(secret));
+const userWallet = Keypair.fromSecretKey(process.env.WALLET as any);
 const metaplex = Metaplex.make(solanaConnection)
   .use(keypairIdentity(userWallet))
   .use(

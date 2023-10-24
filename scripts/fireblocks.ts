@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import fs from "fs";
 import path from "path";
 import { FbSigner } from "../src/lib/fbSigner";
-import { Connection, Keypair, PublicKey } from "@solana/web3.js";
+import { Connection, Keypair } from "@solana/web3.js";
 config();
 
 const apiSecret = fs.readFileSync(

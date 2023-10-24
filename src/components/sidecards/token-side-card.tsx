@@ -12,16 +12,14 @@ import { TokenSuccess } from "../sucess/token-sucess";
 interface Props {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  nftCount: number;
-  setNftCount: React.Dispatch<React.SetStateAction<number>>;
   formControl: UseFormReturn<FormInterface, any, undefined>;
+  mintToken: () => void;
 }
 export const TokenSideCard = ({
   setStep,
   step,
-  nftCount,
-  setNftCount,
   formControl,
+  mintToken,
 }: Props) => {
   return (
     <>
@@ -38,6 +36,7 @@ export const TokenSideCard = ({
               formControl={formControl}
               setStep={setStep}
               step={step}
+              mintToken={mintToken}
             />
           </>
         )}
