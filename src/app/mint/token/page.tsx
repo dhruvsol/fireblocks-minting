@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { getAPISec } from "@/utils/helpers/fireblocks";
+import { createTokenMint } from "@/utils/mint";
 
 interface CardProps {
   heading: string;
@@ -81,9 +82,7 @@ const TokenPage = () => {
         "62efe760-8c68-4d5d-97f5-360686c9bfe2",
         "https://sandbox-api.fireblocks.io",
       );
-      console.log(fireblocks);
-      const minter = new Minter(fireblocks, "2", true);
-      minter.createTokenMint({
+      const success = await createTokenMint(fireblocks, true, "2", {
         numberTokens: formControl.getValues("tokenCount"),
         numDecimals: 0,
         tokenMetadata: {
@@ -91,9 +90,9 @@ const TokenPage = () => {
           image: "",
           name: formControl.getValues("name"),
           symbol: formControl.getValues("symbol"),
-          uri: "",
         },
       });
+      console.log(success);
       toast.success("Success while minting token", {
         position: "bottom-left",
       });
