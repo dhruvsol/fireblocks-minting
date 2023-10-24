@@ -56,6 +56,14 @@ export const NFTSuccess = () => {
         </div>
         <div className=" mx-auto h-0.5 w-[90%] bg-[#D4D4D4]" />
       </div>
+      <div className="mt-10 flex flex-wrap px-4">
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+        <Image src={"/imgs/nft.svg"} alt={"nft"} width={200} height={50} />
+      </div>
     </>
   );
 };

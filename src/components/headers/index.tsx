@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { ConnectWalletButton } from "../button/connect-wallet-btn";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -15,12 +16,14 @@ export const Navbar = () => {
             : "navbar-normal"
         }
       >
-        <Image
-          src={"/imgs/fireblocks.svg"}
-          alt="fireblocks logo"
-          width={200}
-          height={70}
-        />
+        <Link href={"/"}>
+          <Image
+            src={"/imgs/fireblocks.svg"}
+            alt="fireblocks logo"
+            width={200}
+            height={70}
+          />
+        </Link>
         <ConnectWalletButton />
       </div>
     </>
