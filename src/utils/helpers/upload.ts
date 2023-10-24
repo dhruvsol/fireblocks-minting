@@ -10,7 +10,7 @@ const NFT_STORAGE_KEY = process.env.NFT_STORAGE_KEY as string;
 
 async function fileFromPath(filePath: string) {
   const content = await fs.promises.readFile(filePath);
-  const type = mime.getType(filePath);
+  const type = mime.getType(filePath) as string;
   return new File([content], path.basename(filePath), { type });
 }
 
